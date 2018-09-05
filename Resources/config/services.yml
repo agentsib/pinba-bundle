@@ -9,9 +9,12 @@ services:
         class: "%intaro_pinba.script_name_configure.class%"
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onRequest }
+            - { name: kernel.event_listener, event: console.command, method: onConsoleCommand}
+        public: false
 
     intaro_pinba.stopwatch:
         class: "%intaro_pinba.stopwatch.class%"
+        public: true
 
     templating.engine.twig:
         class: "%intaro_pinba.templating.engine.twig.class%"
