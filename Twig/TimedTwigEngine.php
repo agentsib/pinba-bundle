@@ -15,6 +15,7 @@ use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use Intaro\PinbaBundle\Stopwatch\Stopwatch;
 use Symfony\Component\Config\FileLocatorInterface;
+use Twig\Environment;
 
 /**
  * Times the time spent to render a template.
@@ -27,12 +28,12 @@ class TimedTwigEngine extends TwigEngine
     /**
      * Constructor.
      *
-     * @param \Twig_Environment           $environment A \Twig_Environment instance
+     * @param Environment           $environment A \Twig_Environment instance
      * @param TemplateNameParserInterface $parser      A TemplateNameParserInterface instance
      * @param FileLocatorInterface        $locator     A FileLocatorInterface instance
      * @param Stopwatch                   $stopwatch   A Stopwatch instance
      */
-    public function __construct(\Twig_Environment $environment, TemplateNameParserInterface $parser, FileLocatorInterface $locator, Stopwatch $stopwatch)
+    public function __construct(Environment $environment, TemplateNameParserInterface $parser, FileLocatorInterface $locator, Stopwatch $stopwatch)
     {
         parent::__construct($environment, $parser, $locator);
 
