@@ -17,9 +17,16 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder
-            ->root('intaro_pinba')
+
+        if (method_exists(TreeBuilder::class, 'root')) {
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('intaro_pinba');
+        } else {
+            $treeBuilder = new TreeBuilder('intaro_pinba');
+            $rootNode = $treeBuilder->getRootNode();
+        }
+
+        $rootNode
             ->children()
                 ->arrayNode('doctrine')
                     ->addDefaultsIfNotSet()
