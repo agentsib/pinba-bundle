@@ -3,13 +3,12 @@
 namespace Intaro\PinbaBundle\EventListener;
 
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class ScriptNameConfigureListener
 {
-    public function onRequest(GetResponseEvent $event)
+    public function onRequest(RequestEvent $event)
     {
         if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
             return;
