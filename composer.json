@@ -8,9 +8,9 @@
         "name" : "Ilyas Salikhov"
     }],
     "require": {
-        "php": ">=5.5",
-        "symfony/framework-bundle" : "~4.0|~5.0",
-        "symfony/yaml": "~4.0|~5.0"
+        "php": ">=8.1",
+        "symfony/framework-bundle" : "~6.0",
+        "symfony/yaml": "~6.0"
     },
     "suggest": {
         "ext-pinba": "Native Pinba PHP Extension",

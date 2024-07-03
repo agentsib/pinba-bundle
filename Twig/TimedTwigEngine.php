@@ -43,7 +43,7 @@ class TimedTwigEngine extends TwigEngine
     /**
      * {@inheritdoc}
      */
-    public function render($name, array $parameters = array())
+    public function render($name, array $parameters = [])
     {
         $e = $this->stopwatch->start(array(
             'server' => 'localhost',

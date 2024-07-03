@@ -33,11 +33,9 @@ class DbalLogger implements SQLLogger
     public function startQuery($sql, array $params = null, array $types = null)
     {
         if (null !== $this->stopwatch) {
-            $tags = array(
-                'server' => $this->databaseHost ?: (isset($_SERVER['HOSTNAME']) ? $_SERVER['HOSTNAME'] : ''),
-            );
+            $tags = ['server' => $this->databaseHost ?: ($_SERVER['HOSTNAME'] ?? '')];
 
-            if (preg_match('/^\s*(\w+)\s/u', $sql, $matches)) {
+            if (preg_match('/^\s*(\w+)\s/u', (string)$sql, $matches)) {
                 $tags['group'] = 'doctrine::' . strtolower($matches[1]);
             }
             else {

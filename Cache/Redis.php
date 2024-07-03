@@ -6,7 +6,7 @@ use Intaro\PinbaBundle\Stopwatch\Stopwatch;
 class Redis extends \Redis
 {
     protected $stopwatch;
-    protected $stopwatchAdditionalTags = array();
+    protected $stopwatchAdditionalTags = [];
     protected $serverName;
 
     public function addWatchedServer(
@@ -86,13 +86,13 @@ class Redis extends \Redis
         return $result;
     }
 
-    public function set($key, $var)
+    public function set($key, string $var, mixed $timeout = null)
     {
         if ($this->stopwatch) {
             $e = $this->getStopwatchEvent('set');
         }
 
-        $result = parent::set($key, $var);
+        $result = parent::set($key, $var, $timeout);
 
         if ($this->stopwatch) {
             $e->stop();
@@ -191,7 +191,7 @@ class Redis extends \Redis
         return $result;
     }
 
-    public function sAdd($tag, $id)
+    public function sAdd(string $tag, string $id, mixed ...$other_values)
     {
         if ($this->stopwatch) {
             $e = $this->getStopwatchEvent('sAdd');
