@@ -5,7 +5,7 @@ namespace Intaro\PinbaBundle\Stopwatch;
 class Stopwatch
 {
     protected $enabled = false;
-    protected $initTags = array();
+    protected $initTags = [];
 
     public function __construct()
     {
@@ -41,9 +41,9 @@ class Stopwatch
     {
         if ($this->enabled) {
             $tags = array_merge($this->initTags, $tags);
-            if (isset($tags['group']) && !isset($tags['category']) && strpos($tags['group'], '::') !== false) {
-                $v = explode('::', $tags['group']);
-                if (sizeof($v) > 0) {
+            if (isset($tags['group']) && !isset($tags['category']) && str_contains((string)$tags['group'], '::')) {
+                $v = explode('::', (string)$tags['group']);
+                if (count($v) > 0) {
                     $tags['category'] = $v[0];
                 }
             }

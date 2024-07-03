@@ -6,7 +6,7 @@ use Intaro\PinbaBundle\Stopwatch\Stopwatch;
 class Memcache extends \Memcache
 {
     protected $stopwatch;
-    protected $stopwatchAdditionalTags = array();
+    protected $stopwatchAdditionalTags = [];
     protected $serverName;
 
     public function addWatchedServer(
@@ -100,13 +100,13 @@ class Memcache extends \Memcache
         return $result;
     }
 
-    public function delete($key)
+    public function delete($key, $timeout = 0)
     {
         if ($this->stopwatch) {
             $e = $this->getStopwatchEvent('delete');
         }
 
-        $result = parent::delete($key);
+        $result = parent::delete($key, $timeout);
 
         if ($this->stopwatch) {
             $e->stop();
